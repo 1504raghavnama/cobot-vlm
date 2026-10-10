@@ -453,8 +453,9 @@ def generate_figure6_comparative_metrics() -> str:
     success_rates = [100.0 * df[df["method"] == m]["success"].mean() for m in methods]
     min_dists = [df[df["method"] == m]["min_human_dist_m"].mean() for m in methods]
     min_dists_err = [df[df["method"] == m]["min_human_dist_m"].std() for m in methods]
-    safety_viols = [df[df["method"] == m]["safety_violations"].mean() for m in methods]
-    safety_viols_err = [df[df["method"] == m]["safety_violations"].std() for m in methods]
+    # Dual safety violation metric
+    viol_trials = [int(df[df["method"] == m]["is_violation_trial"].sum()) for m in methods]
+    viol_steps_mean = [df[df["method"] == m]["violation_timesteps"].mean() for m in methods]
     plan_times = [df[df["method"] == m]["planning_time_s"].mean() * 1e3 for m in methods]  # ms
 
     fig, axes = plt.subplots(1, 4, figsize=(11, 3.8), dpi=300)
@@ -476,13 +477,12 @@ def generate_figure6_comparative_metrics() -> str:
     for b in bars2:
         axes[1].text(b.get_x() + b.get_width() / 2, b.get_height() + 0.05, f"{b.get_height():.2f}m", ha="center", fontsize=8)
 
-    # 3. Safety Violations
-    bars3 = axes[2].bar(labels, safety_viols, yerr=safety_viols_err, color=colors, edgecolor="black", linewidth=1.2,
-                        hatch=hatches, capsize=4, error_kw=dict(lw=1.2, capthick=1.2))
-    axes[2].set_title("(c) Safety Violations Count", fontsize=9.5, fontweight="bold")
-    axes[2].set_ylim(0, max(safety_viols) * 1.35 + 2)
-    for b in bars3:
-        axes[2].text(b.get_x() + b.get_width() / 2, b.get_height() + 0.8, f"{b.get_height():.1f}", ha="center", fontsize=8)
+    # 3. Violated Trials (<0.15m)
+    bars3 = axes[2].bar(labels, viol_trials, color=colors, edgecolor="black", linewidth=1.2, hatch=hatches)
+    axes[2].set_title("(c) Violated Trials (<0.15m)", fontsize=9.5, fontweight="bold")
+    axes[2].set_ylim(0, 32)
+    for b, steps in zip(bars3, viol_steps_mean):
+        axes[2].text(b.get_x() + b.get_width() / 2, b.get_height() + 1.0, f"{int(b.get_height())} / 30\n({steps:.1f} steps)", ha="center", fontsize=7.5)
 
     # 4. Planning Latency
     bars4 = axes[3].bar(labels, plan_times, color=colors, edgecolor="black", linewidth=1.2, hatch=hatches)

@@ -1,4 +1,4 @@
-Method,Runs,Success Rate (%),Path Length (rad),Planning Time (s),Tracking RMSE (rad),Min Human Dist (m),Safety Violations,Cycle Time (s)
-Method A (RRT-Connect Only),30,100.0,1.48 ± 0.00,0.013 ± 0.021,0.0061 ± 0.0000,0.216 ± 0.030,0.1 ± 0.7,1.10 ± 0.00
-"Method B (VLM + Planner, No Safety)",30,33.3,1.65 ± 0.01,0.011 ± 0.009,0.0058 ± 0.0005,0.165 ± 0.238,10.0 ± 7.2,1.19 ± 0.00
-Method C (Proposed: VLM+Validator+CBF/SSM),30,100.0,2.53 ± 0.08,0.049 ± 0.010,0.0090 ± 0.0008,0.455 ± 0.058,0.0 ± 0.0,1.16 ± 0.03
+Method,Runs,Success Rate (%),Path Length (rad),Planning Time (s),Tracking RMSE (rad),Min Human Dist (m),Violated Trials (<0.15m),Violation Timesteps,Cycle Time (s)
+Method A (RRT-Connect Only),30,100.0,1.48 ± 0.07,0.017 ± 0.022,0.0055 ± 0.0004,0.204 ± 0.046,5 / 30,1.7 ± 5.3,1.10 ± 0.04
+"Method B (VLM + Planner, No Safety)",30,33.3,1.67 ± 0.06,0.017 ± 0.020,0.0060 ± 0.0005,0.159 ± 0.230,20 / 30,13.3 ± 9.6,1.19 ± 0.04
+Method C (Proposed: VLM+Validator+CBF/SSM),30,100.0,2.54 ± 0.09,0.077 ± 0.048,0.0091 ± 0.0006,0.439 ± 0.064,0 / 30,0.0 ± 0.0,1.18 ± 0.05

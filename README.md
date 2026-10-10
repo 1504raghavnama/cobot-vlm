@@ -115,19 +115,21 @@ python src/make_report.py
 
 ## Experimental Benchmark Results (30 Scenes / Method)
 
-Real empirical results obtained from the 90-scene randomized Monte Carlo simulation:
+Real empirical results obtained from the 90-scene randomized Monte Carlo simulation (seed = scene index):
 
 | Metric | Method A (RRT Only) | Method B (VLM Only) | Method C (Proposed) |
 | :--- | :---: | :---: | :---: |
 | **Task Success Rate** | 100.0% | 33.3% | **100.0%** |
-| **Path Length (rad)** | 1.48 ± 0.00 | 1.65 ± 0.01 | 2.53 ± 0.08 |
-| **Planning Time (s)** | 0.013 ± 0.021 | 0.011 ± 0.009 | 0.049 ± 0.010 |
-| **Tracking RMSE (rad)** | 0.0061 ± 0.0000 | 0.0058 ± 0.0005 | 0.0090 ± 0.0008 |
-| **Min Human Dist (m)** | 0.216 ± 0.030 | 0.165 ± 0.238 | **0.455 ± 0.058** |
-| **Safety Violations (<0.15m)** | 4 | 300 | **0** |
-| **Cycle Time (s)** | 1.10 ± 0.00 | 1.19 ± 0.00 | 1.16 ± 0.03 |
+| **Path Length (rad)** | 1.48 ± 0.07 | 1.67 ± 0.06 | 2.54 ± 0.09 |
+| **Planning Time (s)** | 0.017 ± 0.022 | 0.017 ± 0.020 | 0.077 ± 0.048 |
+| **Tracking RMSE (rad)** | 0.0055 ± 0.0004 | 0.0060 ± 0.0005 | 0.0091 ± 0.0006 |
+| **Min Human Dist (m)** | 0.204 ± 0.046 | 0.159 ± 0.230 | **0.439 ± 0.064** |
+| **Violated Trials (<0.15m)** | 5 / 30 | 20 / 30 | **0 / 30** |
+| **Violation Timesteps** | 1.7 ± 5.3 | 13.3 ± 9.6 | **0.0 ± 0.0** |
+| **Cycle Time (s)** | 1.10 ± 0.04 | 1.19 ± 0.04 | 1.18 ± 0.05 |
 
-- **Gripper Finger Structural FEA**: Material Al6061-T6, Grasp load 45 N, Max Von Mises stress $\sigma_{vM} = 14.50$ MPa, **Factor of Safety = 19.03** (Yield strength 276 MPa).
+- **VLM Engine Evaluated**: `MockVLM` (Rule-based deterministic schema extractor, offline-safe; switchable to `HuggingFaceTB/SmolVLM-256M-Instruct`).
+- **Gripper Finger Structural FEA**: `Analytical continuum beam stress formulation with 2D spatial stress tensor field (Al6061-T6)`, Grasp load 45 N, Max Von Mises stress $\sigma_{vM} = 14.50$ MPa, **Factor of Safety = 19.03** (Yield strength 276 MPa).
 
 ---
 

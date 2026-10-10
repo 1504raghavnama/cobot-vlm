@@ -33,6 +33,9 @@ PANDA_MJCF_XML = """
   <option timestep="0.002" gravity="0 0 -9.81" integrator="Euler">
     <flag contact="enable"/>
   </option>
+  <visual>
+    <global offwidth="1280" offheight="960"/>
+  </visual>
 
   <default>
     <joint damping="1.0" armature="0.1"/>
@@ -148,6 +151,8 @@ PANDA_MJCF_XML = """
 
     <!-- RGB-D Workcell Camera -->
     <camera name="workcell_cam" pos="0.95 -0.65 0.95" fovy="45" mode="targetbody" target="table"/>
+    <!-- Wide Overview Camera Showing Full Robot Arm, Table, Fixture, and Human Proxy -->
+    <camera name="overview_cam" pos="1.85 -1.45 1.45" fovy="56" mode="targetbody" target="table"/>
   </worldbody>
 </mujoco>
 """
@@ -437,35 +442,56 @@ class CobotSimEnv:
     def save_workcell_screenshot(self, output_path: str = "outputs/screenshots/workcell_scene.png") -> str:
         """Render high-resolution grayscale-styled snapshot of workcell and save PNG."""
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        rgb, _ = self.render_rgb_depth()
+        # Render wide overview showing entire 7-DOF robot arm, table, parts, and human proxy
+        renderer = mujoco.Renderer(self.model, height=600, width=800)
+        renderer.update_scene(self.data, camera="overview_cam")
+        rgb = renderer.render()
 
         # Convert to Grayscale adhering to strict monochrome style rule
         gray = np.dot(rgb[..., :3], [0.2989, 0.5870, 0.1140])
 
-        fig, ax = plt.subplots(figsize=(8, 6), dpi=300)
+        fig, ax = plt.subplots(figsize=(8.5, 6.2), dpi=300)
         ax.imshow(gray, cmap="gray")
         ax.set_title("Franka Emika Panda Assembly Workcell (MuJoCo Simulation)", fontsize=11, color="black", pad=10)
         ax.axis("off")
 
-        # Annotate parts and fixture
+        # Project 3D labels through overview camera frame
+        ov_cam_id = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_CAMERA, "overview_cam")
+        cam_pos = np.copy(self.data.cam_xpos[ov_cam_id])
+        cam_mat = np.copy(self.data.cam_xmat[ov_cam_id].reshape(3, 3))
+        fovy_rad = np.deg2rad(56.0)
+        f_ov = (600 / 2.0) / np.tan(fovy_rad / 2.0)
+        cx_ov, cy_ov = 400.0, 300.0
+
+        # Key components in workcell
         base_pos = np.array([0.45, -0.22, 0.425])
         shaft_pos = np.array([0.55, -0.15, 0.45])
         cap_pos = np.array([0.38, -0.15, 0.42])
         fixture_pos = np.array([0.50, 0.20, 0.42])
         human_pos = np.copy(self.data.xpos[self.human_body_id])
+        robot_base = np.array([0.0, 0.0, 0.45])
+        ee_pos, _ = self.forward_kinematics()
 
-        for pos, label in [
+        labels = [
+            (robot_base, "Franka Panda Base (7-DOF)"),
+            (ee_pos, "Parallel Gripper"),
             (base_pos, "Part: Base"),
             (shaft_pos, "Part: Shaft"),
             (cap_pos, "Part: Cap"),
             (fixture_pos, "Assembly Fixture"),
             (human_pos, "Human Proxy Obstacle"),
-        ]:
-            u, v = self.world_to_pixel(pos)
-            if 0 <= u < self.cam_width and 0 <= v < self.cam_height:
-                ax.plot(u, v, "o", color="white", markersize=6, markeredgecolor="black", markeredgewidth=1.5)
-                ax.text(u + 8, v - 8, label, color="black", fontsize=8, fontweight="bold",
-                        bbox=dict(boxstyle="square,pad=0.2", facecolor="white", edgecolor="black", alpha=0.85))
+        ]
+
+        for pos, label in labels:
+            p_c = cam_mat.T @ (pos - cam_pos)
+            forward_d = -p_c[2]
+            if forward_d > 0.05:
+                u = int(f_ov * p_c[0] / forward_d + cx_ov)
+                v = int(cy_ov - f_ov * p_c[1] / forward_d)
+                if 20 <= u < 780 and 20 <= v < 580:
+                    ax.plot(u, v, "o", color="white", markersize=5, markeredgecolor="black", markeredgewidth=1.4)
+                    ax.text(u + 6, v - 6, label, color="black", fontsize=7.5, fontweight="bold",
+                            bbox=dict(boxstyle="square,pad=0.2", facecolor="white", edgecolor="black", alpha=0.88))
 
         plt.tight_layout()
         plt.savefig(output_path, dpi=300, facecolor="white", edgecolor="none")
