@@ -1,0 +1,91 @@
+scene,method,success,path_length_rad,planning_time_s,tracking_rmse_rad,min_human_dist_m,safety_violations,cycle_time_s
+1,Method A (RRT-Connect Only),1,1.4843,0.1244,0.0061,0.2029,0,1.102
+1,"Method B (VLM + Planner, No Safety)",0,0.0,0.048,0.0,0.0,15,0.0
+1,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4571,0.0502,0.008,0.3617,0,1.13
+2,Method A (RRT-Connect Only),1,1.4843,0.0071,0.0061,0.214,0,1.102
+2,"Method B (VLM + Planner, No Safety)",1,1.645,0.0167,0.0058,0.4655,0,1.186
+2,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4969,0.0538,0.0082,0.4638,0,1.13
+3,Method A (RRT-Connect Only),1,1.4843,0.0079,0.0061,0.2534,0,1.102
+3,"Method B (VLM + Planner, No Safety)",0,0.0,0.0034,0.0,0.0,15,0.0
+3,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6298,0.0461,0.0103,0.5269,0,1.2
+4,Method A (RRT-Connect Only),1,1.4843,0.0062,0.0061,0.1823,0,1.102
+4,"Method B (VLM + Planner, No Safety)",0,0.0,0.0036,0.0,0.0,15,0.0
+4,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4576,0.0567,0.0098,0.3629,0,1.142
+5,Method A (RRT-Connect Only),1,1.4843,0.0092,0.0061,0.2584,0,1.102
+5,"Method B (VLM + Planner, No Safety)",1,1.6582,0.0151,0.0064,0.5449,0,1.192
+5,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.5027,0.0385,0.0091,0.5264,0,1.136
+6,Method A (RRT-Connect Only),1,1.4843,0.0078,0.0061,0.2161,0,1.102
+6,"Method B (VLM + Planner, No Safety)",0,0.0,0.0033,0.0,0.0,15,0.0
+6,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6333,0.046,0.0104,0.4939,0,1.2
+7,Method A (RRT-Connect Only),1,1.4843,0.0097,0.0061,0.2517,0,1.102
+7,"Method B (VLM + Planner, No Safety)",0,0.0,0.0114,0.0,0.0,15,0.0
+7,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4622,0.0683,0.0094,0.431,0,1.144
+8,Method A (RRT-Connect Only),1,1.4843,0.0121,0.0061,0.1925,0,1.102
+8,"Method B (VLM + Planner, No Safety)",1,1.6537,0.0117,0.0052,0.4671,0,1.19
+8,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4955,0.0372,0.0082,0.4472,0,1.13
+9,Method A (RRT-Connect Only),1,1.4843,0.0096,0.0061,0.2646,0,1.102
+9,"Method B (VLM + Planner, No Safety)",0,0.0,0.0071,0.0,0.0,15,0.0
+9,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6301,0.0434,0.0097,0.5435,0,1.203
+10,Method A (RRT-Connect Only),1,1.4843,0.0086,0.0061,0.2167,0,1.102
+10,"Method B (VLM + Planner, No Safety)",0,0.0,0.0034,0.0,0.0,15,0.0
+10,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4718,0.0486,0.0085,0.367,0,1.147
+11,Method A (RRT-Connect Only),1,1.4843,0.0087,0.0061,0.215,0,1.102
+11,"Method B (VLM + Planner, No Safety)",1,1.6397,0.0132,0.0062,0.5067,0,1.183
+11,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4949,0.0454,0.0089,0.4929,0,1.127
+12,Method A (RRT-Connect Only),1,1.4843,0.0093,0.0061,0.1843,0,1.102
+12,"Method B (VLM + Planner, No Safety)",0,0.0,0.0037,0.0,0.0,15,0.0
+12,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6335,0.0457,0.009,0.4683,0,1.206
+13,Method A (RRT-Connect Only),1,1.4843,0.0108,0.0061,0.2092,0,1.102
+13,"Method B (VLM + Planner, No Safety)",0,0.0,0.0035,0.0,0.0,15,0.0
+13,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4544,0.0381,0.0097,0.3856,0,1.133
+14,Method A (RRT-Connect Only),1,1.4843,0.0105,0.0061,0.2526,0,1.102
+14,"Method B (VLM + Planner, No Safety)",1,1.6582,0.0192,0.0064,0.5412,0,1.192
+14,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.5002,0.0467,0.0082,0.5191,0,1.13
+15,Method A (RRT-Connect Only),1,1.4843,0.0095,0.0061,0.2061,0,1.102
+15,"Method B (VLM + Planner, No Safety)",0,0.0,0.0069,0.0,0.0,15,0.0
+15,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6315,0.0597,0.0104,0.4672,0,1.2
+16,Method A (RRT-Connect Only),1,1.4843,0.0086,0.0061,0.2288,0,1.102
+16,"Method B (VLM + Planner, No Safety)",0,0.0,0.0045,0.0,0.0,15,0.0
+16,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4528,0.0454,0.008,0.3844,0,1.14
+17,Method A (RRT-Connect Only),1,1.4843,0.0088,0.0061,0.1657,0,1.102
+17,"Method B (VLM + Planner, No Safety)",1,1.6522,0.0132,0.0054,0.4629,0,1.188
+17,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.5023,0.0405,0.0098,0.4448,0,1.133
+18,Method A (RRT-Connect Only),1,1.4843,0.0092,0.0061,0.1485,4,1.102
+18,"Method B (VLM + Planner, No Safety)",0,0.0,0.0083,0.0,0.0,15,0.0
+18,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6369,0.0652,0.0083,0.4499,0,1.209
+19,Method A (RRT-Connect Only),1,1.4843,0.0049,0.0061,0.2313,0,1.102
+19,"Method B (VLM + Planner, No Safety)",0,0.0,0.0053,0.0,0.0,15,0.0
+19,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4528,0.0462,0.008,0.3781,0,1.14
+20,Method A (RRT-Connect Only),1,1.4843,0.0079,0.0061,0.193,0,1.102
+20,"Method B (VLM + Planner, No Safety)",1,1.6517,0.0165,0.0054,0.4794,0,1.188
+20,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4919,0.0407,0.0085,0.4599,0,1.128
+21,Method A (RRT-Connect Only),1,1.4843,0.0081,0.0061,0.2099,0,1.102
+21,"Method B (VLM + Planner, No Safety)",0,0.0,0.0126,0.0,0.0,15,0.0
+21,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.623,0.0478,0.0087,0.5001,0,1.197
+22,Method A (RRT-Connect Only),1,1.4843,0.0069,0.0061,0.2639,0,1.102
+22,"Method B (VLM + Planner, No Safety)",0,0.0,0.0071,0.0,0.0,15,0.0
+22,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4737,0.0443,0.0097,0.4178,0,1.152
+23,Method A (RRT-Connect Only),1,1.4843,0.0085,0.0061,0.259,0,1.102
+23,"Method B (VLM + Planner, No Safety)",1,1.649,0.0135,0.0055,0.5422,0,1.187
+23,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.5002,0.0441,0.0082,0.5196,0,1.13
+24,Method A (RRT-Connect Only),1,1.4843,0.008,0.0061,0.2166,0,1.102
+24,"Method B (VLM + Planner, No Safety)",0,0.0,0.0032,0.0,0.0,15,0.0
+24,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6404,0.046,0.0083,0.4954,0,1.209
+25,Method A (RRT-Connect Only),1,1.4843,0.0127,0.0061,0.2077,0,1.102
+25,"Method B (VLM + Planner, No Safety)",0,0.0,0.0225,0.0,0.0,15,0.0
+25,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.469,0.085,0.0101,0.3774,0,1.15
+26,Method A (RRT-Connect Only),1,1.4843,0.0094,0.0061,0.1713,0,1.102
+26,"Method B (VLM + Planner, No Safety)",1,1.6397,0.015,0.0062,0.4609,0,1.183
+26,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4949,0.0385,0.0089,0.445,0,1.127
+27,Method A (RRT-Connect Only),1,1.4843,0.0088,0.0061,0.227,0,1.102
+27,"Method B (VLM + Planner, No Safety)",0,0.0,0.0065,0.0,0.0,15,0.0
+27,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6316,0.0433,0.0097,0.5217,0,1.203
+28,Method A (RRT-Connect Only),1,1.4843,0.0099,0.0061,0.2173,0,1.102
+28,"Method B (VLM + Planner, No Safety)",0,0.0,0.0037,0.0,0.0,15,0.0
+28,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.4701,0.0499,0.0096,0.4004,0,1.143
+29,Method A (RRT-Connect Only),1,1.4843,0.007,0.0061,0.1881,0,1.102
+29,"Method B (VLM + Planner, No Safety)",1,1.6498,0.0179,0.0054,0.4684,0,1.188
+29,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.5009,0.0529,0.0092,0.453,0,1.135
+30,Method A (RRT-Connect Only),1,1.4843,0.0091,0.0061,0.241,0,1.102
+30,"Method B (VLM + Planner, No Safety)",0,0.0,0.0034,0.0,0.0,15,0.0
+30,Method C (Proposed: VLM+Validator+CBF/SSM),1,2.6421,0.0471,0.0083,0.5344,0,1.209
