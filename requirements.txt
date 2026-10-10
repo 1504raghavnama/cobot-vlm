@@ -1,0 +1,21 @@
+# Simulation (MuJoCo official fallback for Python 3.11 Windows)
+mujoco>=3.15.0
+
+# Scientific computing & Optimization
+numpy>=1.24.0
+scipy>=1.10.0
+cvxpy>=1.4.0
+
+# Computer Vision & Vision-Language Modeling
+torch>=2.1.0
+transformers>=4.40.0
+pillow>=10.0.0
+
+# 3D Modeling & CAD/CAE
+trimesh>=4.0.0
+
+# Plotting, Data & Report Generation
+matplotlib>=3.7.0
+pandas>=2.0.0
+pyyaml>=6.0.0
+python-docx>=1.1.0

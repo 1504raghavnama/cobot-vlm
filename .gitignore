@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python cache and byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment and IDE settings
+.env
+.env.*
+.vscode/
+.idea/
+
+# Models and Hugging Face cache
+models/
+hf_cache/
+*.pt
+*.safetensors
+*.bin
+*.onnx
+
+# Outputs cache and large temporary artifacts
+outputs/cache/
+*.tmp
+*.log
+scratch/

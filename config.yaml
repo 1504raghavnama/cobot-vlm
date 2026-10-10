@@ -1,0 +1,86 @@
+seed: 42
+
+simulation:
+  backend: "mujoco" # PyBullet fallback per prompt instruction
+  timestep: 0.002
+  control_dt: 0.01
+  gui: false
+  render_fps: 30
+  table:
+    position: [0.5, 0.0, 0.2]
+    size: [0.8, 1.2, 0.4]
+  parts:
+    base:
+      position: [0.45, -0.2, 0.42]
+      size: [0.08, 0.08, 0.04]
+    shaft:
+      position: [0.55, -0.15, 0.43]
+      radius: 0.015
+      length: 0.10
+    cap:
+      position: [0.50, -0.25, 0.42]
+      radius: 0.025
+      height: 0.03
+  fixture:
+    position: [0.50, 0.20, 0.42]
+    size: [0.12, 0.12, 0.04]
+  human_proxy:
+    radius: 0.15
+    start_pos: [0.35, 0.45, 0.45]
+    velocity_bound: 0.20
+    hazard_zone_radius: 0.35
+  camera:
+    width: 640
+    height: 480
+    focal_length: 500.0
+    cam_pos: [0.85, -0.65, 0.85]
+    lookat: [0.50, 0.0, 0.40]
+
+vlm:
+  use_mock: true # toggle to false to load HuggingFaceTB/SmolVLM-256M-Instruct
+  model_id: "HuggingFaceTB/SmolVLM-256M-Instruct"
+  fallback_model_id: "Qwen/Qwen2-VL-2B-Instruct"
+  temperature: 0.1
+  max_new_tokens: 350
+
+validator:
+  joint_margin: 0.05
+  collision_tolerance: 0.02
+  ik_tolerance: 0.01
+  max_repair_iterations: 3
+  semantic_rules:
+    - "avoid_human"
+    - "approach_from_above"
+    - "slow_near_fragile"
+
+motion_planner:
+  step_size: 0.05
+  max_iterations: 1500
+  shortcut_iterations: 60
+  time_step: 0.02
+  semantic_human_cost_weight: 4.0
+  semantic_fragile_cost_weight: 2.5
+  joint_vel_max: [2.175, 2.175, 2.175, 2.175, 2.61, 2.61, 2.61]
+  joint_acc_max: [15.0, 7.5, 10.0, 12.5, 15.0, 20.0, 20.0]
+
+safety:
+  ssm_d_min: 0.25      # ISO/TS 15066 separation distance (m)
+  ssm_d_stop: 0.10     # emergency stop threshold (m)
+  cbf_gamma: 8.0       # class-K comparison gain
+  max_joint_vel: 1.5   # rad/s
+  ssm_v_max: 0.8       # m/s
+
+cad_cae:
+  material: "Al6061-T6"
+  yield_strength_mpa: 276.0
+  elastic_modulus_gpa: 68.9
+  poisson_ratio: 0.33
+  grasp_force_n: 45.0
+  finger_length_mm: 55.0
+  finger_width_mm: 16.0
+  finger_thickness_mm: 8.0
+
+experiments:
+  num_scenes: 30
+  random_seed: 2026
+  output_dir: "outputs/data"
